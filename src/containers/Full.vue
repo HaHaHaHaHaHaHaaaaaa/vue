@@ -2,9 +2,9 @@
   <div class="app">
     <AppHeader/>
     <div class="app-body">
-      <Sidebar :navItems="nav"/>
+      <Sidebar :navItems="menus" />
       <main class="main">
-        <breadcrumb :list="list"/>
+        <breadcrumb :list="list" />
         <div class="container-fluid">
           <router-view></router-view>
         </div>
@@ -18,6 +18,8 @@
 <script>
 import nav from '../_nav'
 import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '../components/'
+/* import Axios from 'axios'; */
+import http from '../http'
 export default {
   name: 'full',
   components: {
@@ -27,18 +29,27 @@ export default {
     AppFooter,
     Breadcrumb
   },
-  data () {
+  data() {
     return {
-      nav: nav.items
+      nav: nav.items,menus:[]
     }
   },
   computed: {
-    name () {
+    name() {
       return this.$route.name
     },
-    list () {
+    list() {
       return this.$route.matched
     }
+  }, 
+  mounted: function() {
+    http.get('http://localhost:3000/vuemenu/getmenus',res=>{
+      this.menus=res.data;
+    })
+    /*  Axios.get('http://localhost:3000/vuemenu/getmenus').then(res => {
+      console.log(res);
+      this.menus = res.data;
+    }).catch(err => console.log(err)) */
   }
 }
 </script>

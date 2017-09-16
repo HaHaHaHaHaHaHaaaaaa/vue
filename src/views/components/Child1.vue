@@ -1,7 +1,7 @@
 <<template>
     <div>
-    <Berlin :list="arr" />
-    <input v-model="arr" />
+    <Berlin :list='arr' />
+    <input type='number' v-model.number="arr" />
     <www />
     <div>hello world</div>
     <button v-on:click="greet">点击事件</button>
@@ -15,18 +15,25 @@
     
 </template>
 <script>
-import  Berlin  from '../../components/Berlin.vue'
+import Berlin from '../../components/Berlin.vue'
+import Axios from 'axios';
 export default {
-    name: 'child1',
-    components: { Berlin },
-    data: function() {
-        return { show: true, arr:6666 }
-    },
-    methods: {
-        greet: function() {
-            alert('你好王柏林');
-        }
+  name: 'child1',
+  components: { Berlin },
+  data: function() {
+    return { show: true, arr: 6666 }
+  },
+  methods: {
+    greet: function() {
+      alert('你好王柏林');
     }
+  },
+  mounted: function() {
+    Axios.get('http://localhost:3000/vuemenu/getmenus').then(res => {
+      console.log(res);
+      this.menuarr = res.data;
+    }).catch(err => console.log(err))
+  }
 }
 
 </script>
