@@ -22,6 +22,11 @@ export default {
           name: 'Child1',
           url: '/components/child1',
           icon: 'icon-speedometer',
+        },
+        {
+          name: 'Child3',
+          url: '/components/child3',
+          icon: 'icon-speedometer',
         }
       ]
     }

@@ -9,6 +9,7 @@ import Dashboard from '@/views/Dashboard'
 import Wbl from '@/views/Wbl'
 import Child from '@/views/components/Child'
 import Child1 from '@/views/components/Child1'
+import Child3 from '@/views/components/Child3'
 Vue.use(Router)
 
 export default new Router({
@@ -50,6 +51,11 @@ export default new Router({
             path: 'child1',
             name: 'Child1',
             component: Child1
+          },
+          {
+            path: 'child3',
+            name: 'Child3',
+            component: Child3
           }
         ]
       },

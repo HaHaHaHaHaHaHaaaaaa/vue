@@ -3,7 +3,7 @@
     <Berlin :list='arr' />
     <input type='number' v-model.number="arr" />
     <www />
-    <div>hello world</div>
+    <div v-toReverse >hello world</div>
     <button v-on:click="greet">点击事件</button>
       <button v-on:click="show = !show">
     Toggle
@@ -17,6 +17,12 @@
 <script>
 import Berlin from '../../components/Berlin.vue'
 import Axios from 'axios';
+/* import Vue from 'vue';
+Vue.directive('toReverse',{
+  inserted:function(el){
+    console.log(el.innerText);
+  }
+}) */
 export default {
   name: 'child1',
   components: { Berlin },
@@ -30,9 +36,18 @@ export default {
   },
   mounted: function() {
     Axios.get('http://localhost:3000/vuemenu/getmenus').then(res => {
-      console.log(res);
+     /*  console.log(res); */
       this.menuarr = res.data;
     }).catch(err => console.log(err))
+  },
+  myOption:'你好呀好好好好好啊',
+  directives:{
+    toReverse:{
+      inserted:function(el){
+        console.log(el.innerText)
+        el.textContent=el.textContent.split('').reverse().join('')
+      }
+    }
   }
 }
 
