@@ -8,10 +8,11 @@
         <div class="container-fluid">
           <router-view></router-view>
         </div>
+        
       </main>
       <AppAside/>
     </div>
-    <AppFooter/>
+    <AppFooter><h1 slot="wbl">这是组件中的slot</h1></AppFooter>
   </div>
 </template>
 
@@ -31,7 +32,7 @@ export default {
   },
   data() {
     return {
-      nav: nav.items,menus:[]
+      nav: nav.items, menus: []
     }
   },
   computed: {
@@ -41,10 +42,10 @@ export default {
     list() {
       return this.$route.matched
     }
-  }, 
+  },
   mounted: function() {
-    http.get('http://localhost:3000/vuemenu/getmenus',res=>{
-      this.menus=res.data;
+    http.get('http://localhost:3000/vuemenu/getmenus', res => {
+      this.menus = res.data;
     })
     /*  Axios.get('http://localhost:3000/vuemenu/getmenus').then(res => {
       console.log(res);
